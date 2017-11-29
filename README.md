@@ -32,3 +32,9 @@ v.cpus = 2
 
 # Using fabric samples
 The repo containing [hyperledger fabric samples](https://github.com/hyperledger/fabric-samples) are already downloaded inside the provisioned VM. You can use the browser IDE to run the sample scripts directly in the cloud9 IDE.
+
+# Starting and stopping VM
+Use `vagrant halt` to shutdown the VM (recommended before shutting down the computer)
+Use `vagrant up` to start the VM again (After restarting computer, or after VM shutdown)
+Use `vagrant destroy` to completely erase the entire VM, including all saved data.
+

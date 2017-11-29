@@ -8,6 +8,7 @@ set -x
 apt-get update
 apt-get -y install docker.io docker-compose git openssl golang-go libltdl-dev
 addgroup ubuntu docker
+echo "#!/bin/bash" > /etc/rc.local
 echo "service docker start" >> /etc/rc.local
 service docker start
 
@@ -47,17 +48,17 @@ curl -sL https://deb.nodesource.com/setup_6.x | bash -
 cd / ; git clone https://github.com/c9/core.git cloud9
 cd /cloud9 && scripts/install-sdk.sh
 chmod a+rw -R /cloud9/build
-echo 'cd /cloud9 ; su ubuntu -c "nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret" &' >> /etc/rc.local
-cd /cloud9 ; su ubuntu -c "nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret" &
+echo 'cd /cloud9 ; su ubuntu -c "screen -d -m nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret"' >> /etc/rc.local
+cd /cloud9 ; su ubuntu -c "screen -d -m nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret"
+
+
+echo "exit 0" >> /etc/rc.local
 SCRIPT
 
 
 Vagrant.configure('2') do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |v|
-    unless Vagrant.has_plugin?("vagrant-vbguest")
-      raise 'Please install vbguest plugin using "vagrant plugin install vagrant-vbguest" first!'
-    end
     v.memory = 2048
     v.cpus = 2
   end
