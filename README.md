@@ -28,6 +28,7 @@ v.cpus = 2
 ==> default: ++ su ubuntu -c 'nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret'
 ```
 - and the terminal command exits, you can open the browser based IDE at [localhost:8181](http://localhost:8181)
+- login into the IDE using the default credentials `root` and `secret`
 
 # Using fabric samples
 The repo containing [hyperledger fabric samples](https://github.com/hyperledger/fabric-samples) are already downloaded inside the provisioned VM. You can use the browser IDE to run the sample scripts directly in the cloud9 IDE.
