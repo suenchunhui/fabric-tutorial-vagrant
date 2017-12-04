@@ -13,7 +13,7 @@ v.memory = 2048
 v.cpus = 2
 ```
 
-#Provisioning
+# Provisioning
 - change directory to the folder containing the downloaded `Vagrantfile`
 - run `vagrant up` from the commandline(OSX: terminal, Win: cmd.exe) to provision the entire system. Download and provisioning system can take a long up (up to 10-20mins)
 - Once you reach the success screen output, 
@@ -35,6 +35,8 @@ The repo containing [hyperledger fabric samples](https://github.com/hyperledger/
 
 # Starting and stopping VM
 Use `vagrant halt` to shutdown the VM (recommended before shutting down the computer)
+
 Use `vagrant up` to start the VM again (After restarting computer, or after VM shutdown)
+
 Use `vagrant destroy` to completely erase the entire VM, including all saved data.
 
