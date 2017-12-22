@@ -64,13 +64,18 @@ su ubuntu -c "bash -c 'cd; git clone https://github.com/hyperledger/fabric-sampl
 #cloud9 IDE
 apt-get install -y curl build-essential nodejs
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
-apt-get install nodejs
+cd /usr/bin/ && ln -s nodejs node
+apt-get install -y npm
 cd / ; git clone https://github.com/c9/core.git cloud9
 cd /cloud9 && scripts/install-sdk.sh
 chmod a+rw -R /cloud9/build
 echo 'cd /cloud9 ; su ubuntu -c "screen -d -m nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret"' >> /etc/rc.local
 cd /cloud9 ; su ubuntu -c "screen -d -m nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret"
 
+#yeoman tools & composer rest server
+npm install -g yo typings bower @angular/cli generator-hyperledger-composer http-server composer-rest-server
+
+su ubuntu -c "cd ; cp -rf /vagrant/composer-playground . ; cd composer-playground ; chmod a+x playground.sh ; cd fabric-composer-tools ; docker build -t fabric-composer-tools ."
 
 echo "exit 0" >> /etc/rc.local
 SCRIPT
@@ -79,8 +84,8 @@ SCRIPT
 Vagrant.configure('2') do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
-    v.cpus = 2
+    v.memory = 3072
+    v.cpus = 3
   end
 
   config.vm.provision "shell", inline: $script
