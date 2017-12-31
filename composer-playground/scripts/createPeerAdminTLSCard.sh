@@ -33,7 +33,8 @@ cat << EOF > /tmp/.connection.json
     "name": "hlfv1",
     "orderers": [
        { 
-            "url" : "grpc://orderer.example.com:7050"
+            "url" : "grpcs://orderer.example.com:7050",
+            "cert" : "${ORDERER_TLS_CERT}"
         }
     ],
     "ca": { "url": "http://ca.org1.example.com:7054",
@@ -41,20 +42,24 @@ cat << EOF > /tmp/.connection.json
         },
     "peers": [
         {
-            "requestURL": "grpc://peer0.org1.example.com:7051",
-            "eventURL": "grpc://peer0.org1.example.com:7053"
+            "requestURL": "grpcs://peer0.org1.example.com:7051",
+            "eventURL": "grpcs://peer0.org1.example.com:7053",
+            "cert": "${PEER0_TLS_CERT}"
         },
         {
-            "requestURL": "grpc://peer1.org1.example.com:7051",
-            "eventURL": "grpc://peer1.org1.example.com:7053"
+            "requestURL": "grpcs://peer1.org1.example.com:7051",
+            "eventURL": "grpcs://peer1.org1.example.com:7053",
+            "cert": "${PEER1_TLS_CERT}"
         },
         {
-            "requestURL": "grpc://peer2.org1.example.com:7051",
-            "eventURL": "grpc://peer2.org1.example.com:7053"
+            "requestURL": "grpcs://peer2.org1.example.com:7051",
+            "eventURL": "grpcs://peer2.org1.example.com:7053",
+            "cert": "${PEER2_TLS_CERT}"
         },
         {
-            "requestURL": "grpc://peer3.org1.example.com:7051",
-            "eventURL": "grpc://peer3.org1.example.com:7053"
+            "requestURL": "grpcs://peer3.org1.example.com:7051",
+            "eventURL": "grpcs://peer3.org1.example.com:7053",
+            "cert": "${PEER3_TLS_CERT}"
         }
     ],
     "keyValStore": "${HOME}/.composer-credentials",

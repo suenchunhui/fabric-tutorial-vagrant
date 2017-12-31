@@ -61,6 +61,11 @@ cd / ; cp /fabric/build/bin/cryptogen /usr/bin/ ; cp /fabric/build/bin/configtxg
 #clone sample repo
 su ubuntu -c "bash -c 'cd; git clone https://github.com/hyperledger/fabric-samples -b #{FABRIC_SAMPLE_VER}'"
 
+#yeoman tools & composer rest server
+npm install -g yo typings bower @angular/cli generator-hyperledger-composer http-server composer-rest-server
+
+su ubuntu -c "cd ; cp -rf /vagrant/composer-playground . ; cd composer-playground ; chmod a+x playground.sh ; cd fabric-composer-tools ; docker build -t fabric-composer-tools ."
+
 #cloud9 IDE
 apt-get install -y curl build-essential nodejs
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
@@ -72,11 +77,6 @@ chmod a+rw -R /cloud9/build
 echo 'cd /cloud9 ; su ubuntu -c "screen -d -m nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret"' >> /etc/rc.local
 cd /cloud9 ; su ubuntu -c "screen -d -m nodejs server.js -l 0.0.0.0 -w /home/ubuntu --auth root:secret"
 
-#yeoman tools & composer rest server
-npm install -g yo typings bower @angular/cli generator-hyperledger-composer http-server composer-rest-server
-
-su ubuntu -c "cd ; cp -rf /vagrant/composer-playground . ; cd composer-playground ; chmod a+x playground.sh ; cd fabric-composer-tools ; docker build -t fabric-composer-tools ."
-
 echo "exit 0" >> /etc/rc.local
 SCRIPT
 
@@ -85,11 +85,12 @@ Vagrant.configure('2') do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |v|
     v.memory = 3072
-    v.cpus = 3
+    v.cpus = 2
   end
 
   config.vm.provision "shell", inline: $script
   config.vm.network :forwarded_port, guest: 8080, host: 8080  #composer
   config.vm.network :forwarded_port, guest: 8181, host: 8181  #cloud9-ide
   config.vm.network :forwarded_port, guest: 9090, host: 9090  #custom-ui
+  config.vm.network :forwarded_port, guest: 3001, host: 3001  #marbles-ui
 end

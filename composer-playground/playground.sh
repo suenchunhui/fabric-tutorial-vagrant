@@ -143,6 +143,9 @@ function replacePrivateKey () {
   # actual values of the private key file names for the two CAs.
   CURRENT_DIR=$PWD
   cd crypto-config/peerOrganizations/org1.example.com/ca/
+  cp *pem ca-cert.pem
+  cp *sk ca-key.pem
+
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
   sed $OPTS "s/CA1_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-e2e.yaml
