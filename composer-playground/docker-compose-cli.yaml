@@ -15,6 +15,7 @@ services:
       file:   base/docker-compose-base.yaml
       service: orderer.example.com
     container_name: orderer.example.com
+    restart: always
     networks:
       - byfn
 
@@ -23,6 +24,7 @@ services:
     extends:
       file:  base/docker-compose-base.yaml
       service: peer0.org1.example.com
+    restart: always
     networks:
       - byfn
 
@@ -31,6 +33,7 @@ services:
     extends:
       file:  base/docker-compose-base.yaml
       service: peer1.org1.example.com
+    restart: always
     networks:
       - byfn
 
@@ -39,6 +42,7 @@ services:
     extends:
       file:  base/docker-compose-base.yaml
       service: peer2.org1.example.com
+    restart: always
     networks:
       - byfn
 
@@ -47,6 +51,7 @@ services:
     extends:
       file:  base/docker-compose-base.yaml
       service: peer3.org1.example.com
+    restart: always
     networks:
       - byfn
 
@@ -60,6 +65,7 @@ services:
       #- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a22daf356b2aab5792ea53e35f66fccef1d7f1aa2b3a2b92dbfbf96a448ea26a_sk
     volumes:
       - ./crypto-config/peerOrganizations/org1.example.com/ca:/etc/hyperledger/fabric-ca-server
+    restart: always
     networks:
       - byfn
 
@@ -89,6 +95,7 @@ services:
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     cap_add:
       - SYS_PTRACE
+    restart: always
     depends_on:
       - orderer.example.com
       - peer0.org1.example.com
