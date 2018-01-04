@@ -119,6 +119,7 @@ function networkDown () {
     #removeUnwantedImages
     # remove orderer block and other channel configuration transactions and certs
     #rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config
+    sudo rm -rf crypto-config/peerOrganizations/org1.example.com/ca/fabric-ca-server.db crypto-config/peerOrganizations/org1.example.com/ca/fabric-ca-server-config.yaml crypto-config/peerOrganizations/org1.example.com/ca/registrar
   fi
 }
 
