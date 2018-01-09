@@ -62,10 +62,10 @@ cd / ; cp /fabric/build/bin/cryptogen /usr/bin/ ; cp /fabric/build/bin/configtxg
 su ubuntu -c "bash -c 'cd; git clone https://github.com/hyperledger/fabric-samples -b #{FABRIC_SAMPLE_VER}'"
 
 #yeoman tools & composer rest server
-npm install -g yo typings bower @angular/cli generator-hyperledger-composer http-server composer-rest-server
+su npm install -g yo typings bower @angular/cli generator-hyperledger-composer http-server composer-rest-server
 
-su ubuntu -c "git clone https://github.com/suenchunhui/fabric-tutorial-vagrant ; ln -s fabric-tutorial-vagrant/composer-playground ."
-su ubuntu -c "cd composer-playground ; chmod a+x playground.sh ; chmod a+x scripts/*.sh ; cd fabric-composer-tools ; docker build -t fabric-composer-tools ."
+su ubuntu -c "cd ; git clone https://github.com/suenchunhui/fabric-tutorial-vagrant ; ln -s fabric-tutorial-vagrant/composer-playground ."
+su ubuntu -c "cd ; cd composer-playground ; chmod a+x playground.sh ; chmod a+x scripts/*.sh ; cd fabric-composer-tools ; docker build -t fabric-composer-tools ."
 
 #cloud9 IDE
 apt-get install -y curl build-essential nodejs
