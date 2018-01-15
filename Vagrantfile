@@ -61,9 +61,15 @@ cd / ; cp /fabric/build/bin/cryptogen /usr/bin/ ; cp /fabric/build/bin/configtxg
 #clone sample repo
 su ubuntu -c "bash -c 'cd; git clone https://github.com/hyperledger/fabric-samples -b #{FABRIC_SAMPLE_VER}'"
 
-#yeoman tools & composer rest server
-npm install -g yo generator-fountain-webapp typings bower @angular/cli generator-hyperledger-composer http-server composer-rest-server
+#npm, yeoman tools & composer rest server
+apt-get install -y npm
+npm install -g n
+n 6.9
+rm -rf /usr/bin/node /usr/bin/nodejs
+cd /usr/local/bin/ ; ln -s node nodejs
+npm install -g yo generator-fountain-webapp http-server@0.10.0 typings bower @angular/cli generator-hyperledger-composer composer-rest-server
 
+#composer playground
 su ubuntu -c "cd ; git clone https://github.com/suenchunhui/fabric-tutorial-vagrant ; ln -s fabric-tutorial-vagrant/composer-playground ."
 su ubuntu -c "cd ; cd composer-playground ; chmod a+x playground.sh ; chmod a+x scripts/*.sh ; cd fabric-composer-tools ; docker build -t fabric-composer-tools ."
 
@@ -71,7 +77,6 @@ su ubuntu -c "cd ; cd composer-playground ; chmod a+x playground.sh ; chmod a+x 
 apt-get install -y curl build-essential nodejs
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
 cd /usr/bin/ && ln -s nodejs node
-apt-get install -y npm
 cd / ; git clone https://github.com/c9/core.git cloud9
 cd /cloud9 && scripts/install-sdk.sh
 chmod a+rw -R /cloud9/build
