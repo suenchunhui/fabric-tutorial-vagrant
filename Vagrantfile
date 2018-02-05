@@ -90,13 +90,14 @@ SCRIPT
 Vagrant.configure('2') do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 3072
-    v.cpus = 2
+    v.memory = 4096
+    v.cpus = 4
   end
 
   config.vm.provision "shell", inline: $script
   config.vm.network :forwarded_port, guest: 8080, host: 8080  #composer
   config.vm.network :forwarded_port, guest: 8181, host: 8181  #cloud9-ide
   config.vm.network :forwarded_port, guest: 9090, host: 9090  #custom-ui
+  config.vm.network :forwarded_port, guest: 3000, host: 3000  #marbles-ui
   config.vm.network :forwarded_port, guest: 3001, host: 3001  #marbles-ui
 end
