@@ -40,3 +40,18 @@ Use `vagrant up` to start the VM again (After restarting computer, or after VM s
 
 Use `vagrant destroy` to completely erase the entire VM, including all saved data.
 
+# Starting composer-playground
+Going to the `composer-playground` folder and start `./playground.sh` will bring up a 4-peer network with 1 orderer and 1 fabric-ca, and composer-playground at [http://localhost:8080](http://localhost:8080) 
+Have fun!
+
+# Creating NetworkAdmin credentials for the playground
+This command will enroll the root registrar inside the fabric-ca container itself, using the default password of fabric-ca.
+```
+docker exec -it ca.org1.example.com fabric-ca-client enroll -M registrar -u http://admin:adminpw@localhost:7054
+```
+
+Then, use this command to use the registrar credentials to register a new user (to be used as a NetworkAdmin for composer-playground). 
+```
+docker exec -it ca.org1.example.com fabric-ca-client register -M registrar -u http://localhost:7054 --id.name <user_id> --id.affiliation org1 --id.attrs '"hf.Registrar.Roles=client"' --id.type user
+```
+Use the returned password and specified `user_id` as NetworkAdmin when deploying a new network inside the composer-playground. (ID and Secrets method in playground)
