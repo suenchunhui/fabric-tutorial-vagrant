@@ -104,6 +104,7 @@ services:
       - peer3.org1.example.com
     ports:
       - 8080:8080
+      - 3000:3000
     networks:
       - byfn
 

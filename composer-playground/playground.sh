@@ -324,7 +324,7 @@ while getopts "h?c:t:d:f:s:" opt; do
 done
 
 MODE=${@:$OPTIND:1}
-[ -z $MODE] && MODE="up"
+[ -z $MODE ] && MODE="up"
 
 # Determine whether starting, stopping, restarting or generating for announce
 if [ "$MODE" == "up" ]; then

@@ -14,5 +14,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 FROM hyperledger/fabric-tools:x86_64-1.0.0
-
-RUN apt-get update ; apt-get install -y python ; npm install -g composer-cli composer-playground pm2
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update ; apt-get install -y python ; npm install -g composer-cli composer-playground pm2 composer-rest-server
