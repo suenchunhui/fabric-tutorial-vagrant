@@ -93,6 +93,7 @@ services:
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+        - ./mnt:/mnt
     cap_add:
       - SYS_PTRACE
     restart: always
