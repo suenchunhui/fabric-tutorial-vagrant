@@ -15,4 +15,4 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 FROM hyperledger/fabric-tools:x86_64-1.0.0
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update ; apt-get install -y python ; npm install -g composer-cli composer-playground pm2 composer-rest-server
+RUN apt-get update ; apt-get install -y python ; npm install -g composer-cli@0.16.3 composer-playground@0.16.3 pm2 composer-rest-server@0.16.3
