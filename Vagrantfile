@@ -67,7 +67,7 @@ npm install -g n
 n 6.9
 rm -rf /usr/bin/node /usr/bin/nodejs
 cd /usr/local/bin/ ; ln -s node nodejs
-npm install -g yo generator-fountain-webapp http-server@0.10.0 typings bower @angular/cli generator-hyperledger-composer composer-rest-server
+npm install -g yo generator-fountain-webapp http-server@0.10.0 typings bower @angular/cli generator-hyperledger-composer composer-cli@0.16.3 composer-rest-server@0.16.3
 
 #composer playground
 su ubuntu -c "cd ; git clone https://github.com/suenchunhui/fabric-tutorial-vagrant ; ln -s fabric-tutorial-vagrant/composer-playground ."
